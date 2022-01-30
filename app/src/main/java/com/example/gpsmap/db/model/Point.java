@@ -64,6 +64,6 @@ public class Point {
     }
 
     public void setAccuracy(Double accuracy) {
-        this.accuracy = accuracy;
+         this.accuracy = accuracy;
     }
 }
