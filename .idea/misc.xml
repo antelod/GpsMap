@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/GpsMap/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21770833333333334" />
+        <entry key="..\:/AndroidStudioProjects/GpsMap/app/src/main/res/layout/activity_cargar_mapa.xml" value="0.2617753623188406" />
         <entry key="..\:/AndroidStudioProjects/GpsMap/app/src/main/res/layout/activity_iniciar_ruta.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/GpsMap/app/src/main/res/layout/activity_main.xml" value="0.18" />
       </map>

@@ -2,4 +2,5 @@
     <string name="app_name">GpsMap</string>
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>
+    <string name="button_cargar_mapa">Engadir mapa</string>
 </resources>

@@ -51,8 +51,8 @@ public class IniciarRutaActivity extends AppCompatActivity {
         gps.getLocationGPS();
 
         openMap();
-        gps.setMyLocationOverlay(miLocalizacionMarker());
-        gps.setLineaRuta(crearLineaRuta());
+        //gps.setMyLocationOverlay(miLocalizacionMarker());
+        //gps.setLineaRuta(crearLineaRuta());
         //miLocalizacionMarker();
 
     }

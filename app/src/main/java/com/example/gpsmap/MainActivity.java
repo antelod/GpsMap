@@ -1,5 +1,9 @@
 package com.example.gpsmap;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -8,6 +12,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +26,20 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_PERMISSIONS_REQUEST_CODE = 1;
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        // doSomeOperations();
+                        CargarMapa.getInstance().setUriFile(data.getData());
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +56,23 @@ public class MainActivity extends AppCompatActivity {
         AndroidGraphicFactory.createInstance(getApplication());
         // TODO Cambiar
         // para pillar el mapa
-        Intent intent = new Intent(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ? Intent.ACTION_OPEN_DOCUMENT : Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        startActivityForResult(intent, 0);
+ //       Intent intent = new Intent(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ? Intent.ACTION_OPEN_DOCUMENT : Intent.ACTION_GET_CONTENT);
+ //       intent.addCategory(Intent.CATEGORY_OPENABLE);
+ //       intent.setType("*/*");
+ //       startActivityForResult(intent, 0);
+
+  //      ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+  //              new ActivityResultCallback<Uri>() {
+  //                  @Override
+  //                  public void onActivityResult(Uri uri) {
+  //                      // Handle the returned Uri
+  //                  }
+  //              });
+//
+
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -56,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
     public void iniciarRuta(View view) {
         Intent intent = new Intent(this, IniciarRutaActivity.class);
         startActivity(intent);
+    }
+
+    public void cargarMapa(View view) {
+        Intent intent = new Intent(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ? Intent.ACTION_OPEN_DOCUMENT : Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        someActivityResultLauncher.launch(intent);
     }
 
     private void requestPermissionsIfNecessary(String[] permissions) {

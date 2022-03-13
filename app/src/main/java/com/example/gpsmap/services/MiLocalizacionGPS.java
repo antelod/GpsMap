@@ -11,10 +11,14 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationRequest;
+import android.location.LocationRequest.Builder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import com.example.gpsmap.IniciarRutaActivity;
@@ -67,10 +71,22 @@ public class MiLocalizacionGPS extends Service implements LocationListener {
             return;
         }
 
-        locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                MIN_TIME_BW_UPDATES,
-                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+        // TODO descomentar esto para funcione
+       locationManager.requestLocationUpdates(
+               LocationManager.GPS_PROVIDER,
+               MIN_TIME_BW_UPDATES,
+               MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+
+
+        // PRuebas
+
+
+
+        // hasta aqui pruebas
+
+
 
         this.locationGPS = locationManager.getLastKnownLocation(GPS_PROVIDER);
         // Location locationNet = locationManager.getLastKnownLocation(NETWORK_PROVIDER);
